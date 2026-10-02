@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ananya ❤️</title>
+<meta name="description" content="A little birthday surprise ❤️">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Georgia,"Times New Roman",serif}
+body{
+  min-height:100vh;color:#fff;overflow-x:hidden;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(255,255,255,.22),transparent 25%),
+    radial-gradient(circle at 85% 85%,rgba(255,182,193,.22),transparent 30%),
+    linear-gradient(135deg,#3b1027,#8e3157 48%,#260914);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;
+  background-image:radial-gradient(#fff 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{
+  width:min(94vw,620px);padding:34px 24px;text-align:center;
+  border:1px solid rgba(255,255,255,.2);border-radius:30px;
+  background:rgba(255,255,255,.10);backdrop-filter:blur(18px);
+  box-shadow:0 25px 80px rgba(0,0,0,.38);
+  animation:rise .8s ease;
+}
+.hidden{display:none!important}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:none}}
+.lock{font-size:74px;margin-bottom:8px}
+h1{font-size:clamp(30px,8vw,48px);margin:8px 0 14px}
+h2{font-size:clamp(23px,6vw,32px);margin:8px 0 18px}
+p{font-size:18px;line-height:1.7}
+.countdown{
+  margin:24px 0;padding:16px;border-radius:18px;
+  background:rgba(0,0,0,.18);font-family:Arial,sans-serif;
+  font-size:clamp(19px,5vw,28px);font-weight:700
+}
+button{
+  border:0;border-radius:999px;padding:15px 27px;margin-top:18px;
+  background:#fff;color:#a22c59;font-weight:700;font-size:17px;
+  box-shadow:0 10px 28px rgba(0,0,0,.25);cursor:pointer;
+  transition:.25s transform
+}
+button:active{transform:scale(.96)}
+.heart-big{font-size:68px;animation:pulse 1.25s infinite}
+@keyframes pulse{50%{transform:scale(1.13)}}
+.photo-wrap{
+  width:100%;height:min(68vh,520px);margin:24px 0;border-radius:24px;
+  overflow:hidden;background:rgba(0,0,0,.22)
+}
+.photo{display:none;width:100%;height:100%;object-fit:cover}
+.photo.active{display:block;animation:photoIn .9s ease}
+@keyframes photoIn{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:none}}
+.dots{display:flex;justify-content:center;gap:8px;margin:12px 0 4px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35)}
+.dot.active{background:#fff}
+.message{
+  margin-top:24px;padding:25px;border-radius:22px;
+  background:rgba(255,255,255,.10);font-size:19px;line-height:1.9;
+  white-space:pre-line;text-align:left
+}
+.signature{font-size:18px;margin-top:22px}
+.floating{
+  position:fixed;bottom:-40px;z-index:10;pointer-events:none;
+  animation:floatUp linear forwards
+}
+@keyframes floatUp{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.shimmer{
+  background:linear-gradient(90deg,#fff,#ffd1df,#fff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% auto;animation:shine 3s linear infinite
+}
+@keyframes shine{to{background-position:200% center}}
+.small{font-family:Arial,sans-serif;font-size:13px;opacity:.7;margin-top:18px}
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- LOCKED -->
+  <section id="locked" class="card">
+    <div class="lock">🔒</div>
+    <h1>A Little Surprise</h1>
+    <p>This is only for <b>Ananya</b> ❤️</p>
+    <p>Your surprise will open at the special time.</p>
+    <div id="countdown" class="countdown">Checking the time...</div>
+    <p>Come back when the countdown reaches zero 🎂</p>
+    <div class="small">The unlock is controlled by the website's server time.</div>
+  </section>
+
+  <!-- START -->
+  <section id="start" class="card hidden">
+    <div class="heart-big">❤️</div>
+    <h1 class="shimmer">Happy Birthday</h1>
+    <h2 id="name1"></h2>
+    <p>I made a little something just for you. 🫶🏻</p>
+    <button onclick="openPhotos()">Open Your Surprise 💌</button>
+  </section>
+
+  <!-- PHOTOS -->
+  <section id="photos" class="card hidden">
+    <h1>Our Memories ❤️</h1>
+    <p>First, I want you to see these photos...</p>
+    <div class="photo-wrap">
+      <img class="photo active" src="/static/photos/photo1.jpg" alt="Memory 1">
+      <img class="photo" src="/static/photos/photo2.jpg" alt="Memory 2">
+      <img class="photo" src="/static/photos/photo3.jpg" alt="Memory 3">
+    </div>
+    <div id="dots" class="dots"></div>
+    <button onclick="showWish()">Now Open My Wish ❤️</button>
+  </section>
+
+  <!-- WISH -->
+  <section id="wish" class="card hidden">
+    <div class="heart-big">💖</div>
+    <h1 class="shimmer">Happy Birthday ❤️</h1>
+    <h2 id="name2"></h2>
+    <div id="message" class="message"></div>
+    <div class="signature">Made with ❤️ just for you</div>
+    <div style="font-size:52px;margin-top:20px">🎂 🎁 💗</div>
+  </section>
+
+</div>
+
+<script>
+const BIRTHDAY_ISO = {{ birthday_iso|tojson }};
+const HER_NAME = {{ her_name|tojson }};
+const MESSAGE = {{ message|tojson }};
+
+const locked = document.getElementById("locked");
+const start = document.getElementById("start");
+const photos = document.getElementById("photos");
+const wish = document.getElementById("wish");
+const countdown = document.getElementById("countdown");
+const photoEls = [...document.querySelectorAll(".photo")];
+const dots = document.getElementById("dots");
+
+let serverOffsetMs = 0;
+let unlocked = false;
+let currentPhoto = 0;
+let slideshowStarted = false;
+
+document.getElementById("name1").textContent = HER_NAME;
+document.getElementById("name2").textContent = HER_NAME;
+document.getElementById("message").textContent = MESSAGE;
+
+photoEls.forEach((_, i) => {
+  const d = document.createElement("span");
+  d.className = "dot" + (i === 0 ? " active" : "");
+  dots.appendChild(d);
+});
+
+function setPhoto(index){
+  photoEls.forEach((p,i)=>p.classList.toggle("active",i===index));
+  [...dots.children].forEach((d,i)=>d.classList.toggle("active",i===index));
+}
+
+function startSlideshow(){
+  if(slideshowStarted) return;
+  slideshowStarted = true;
+  setInterval(()=>{
+    currentPhoto = (currentPhoto + 1) % photoEls.length;
+    setPhoto(currentPhoto);
+  }, 3500);
+}
+
+function openPhotos(){
+  start.classList.add("hidden");
+  photos.classList.remove("hidden");
+  startSlideshow();
+}
+
+function showWish(){
+  photos.classList.add("hidden");
+  wish.classList.remove("hidden");
+  makeHearts();
+}
+
+function makeHearts(){
+  setInterval(()=>{
+    const el = document.createElement("div");
+    el.className = "floating";
+    el.textContent = ["❤️","💖","💕","💗","✨"][Math.floor(Math.random()*5)];
+    el.style.left = Math.random()*100 + "vw";
+    el.style.fontSize = (18 + Math.random()*20) + "px";
+    el.style.animationDuration = (4 + Math.random()*4) + "s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),8500);
+  },450);
+}
+
+function formatRemaining(ms){
+  if(ms <= 0) return "00d 00h 00m 00s";
+  const s = Math.floor(ms/1000);
+  const d = Math.floor(s/86400);
+  const h = Math.floor((s%86400)/3600);
+  const m = Math.floor((s%3600)/60);
+  const sec = s%60;
+  return `${String(d).padStart(2,"0")}d ${String(h).padStart(2,"0")}h ${String(m).padStart(2,"0")}m ${String(sec).padStart(2,"0")}s`;
+}
+
+function unlock(){
+  if(unlocked) return;
+  unlocked = true;
+  locked.classList.add("hidden");
+  start.classList.remove("hidden");
+}
+
+async function syncServerTime(){
+  try{
+    const r = await fetch("/api/time?x="+Date.now(), {cache:"no-store"});
+    const data = await r.json();
+    const serverNow = Date.parse(data.now);
+    serverOffsetMs = serverNow - Date.now();
+    if(data.unlocked) unlock();
+  }catch(e){
+    // Keep retrying; the page will not unlock based only on the local clock.
+  }
+}
+
+function tick(){
+  const serverNow = Date.now() + serverOffsetMs;
+  const target = Date.parse(BIRTHDAY_ISO);
+  const remaining = target - serverNow;
+  if(remaining <= 0){
+    countdown.textContent = "It's time ❤️";
+    if(serverOffsetMs !== 0) unlock();
+    else syncServerTime();
+  }else{
+    countdown.textContent = formatRemaining(remaining);
+  }
+}
+
+syncServerTime();
+setInterval(syncServerTime, 15000);
+setInterval(tick, 250);
+tick();
+</script>
+</body>
+</html>
